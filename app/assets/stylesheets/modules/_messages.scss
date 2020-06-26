@@ -15,6 +15,8 @@
     display: flex;
     align-items: center;
     height: 100px;
+    font-weight: bold;
+    color: #ffffff;
   }
     &__top-items {
       height: 20px;
@@ -24,10 +26,7 @@
       display: flex;
       justify-content: space-between;
   }
-     &__top-items__name{
-      color: #ffffff;
-    }
-     &__top-items__icn{
+     &__top-items__icn {
        display: flex;
        list-style: none;
        a{
@@ -37,7 +36,26 @@
      &__top-items__icn__edit{
        margin-right: 5px;
      }
-  }
+     .Side__group-lists{
+        height: calc( 100% - 100px );
+        padding: 20px 20px 0px;
+        background-color: #2f3e51;
+        color: #ffffff;
+        font-weight: bold;
+     }
+        .Side__group-lists__list{
+         padding-bottom: 40px;
+      }
+        .Side__group-lists__list__name{
+         font-size: 15px;
+         padding-bottom: 5px;
+       }
+         .Side__group-lists__list__message{
+         font-size: 11px;
+       }
+   }
+
+
 .Main-chat {
   width: calc( 100vw - 300px );
   background-color: #ffffff;
