@@ -18,4 +18,11 @@
     .Main-chat__message-list__post
       %p.message-text 良い天気ですね！
 
-  .Main__message-form
+  .Main-chat__message-form
+    %f.new-message
+      .form-content
+        %input.input-text{placeholder: "type a message",type: "text" }
+        %label{class:'img-icn'}
+          %i.fa.fa-image
+          %input{type: "file", class: "img-file" }
+      %input.submit-btn{name: "commit", value: "Send", type: "submit" }
