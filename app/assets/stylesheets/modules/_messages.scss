@@ -40,9 +40,10 @@
     height: calc(100vh - 100px);
     padding: 20px 20px 0px;
     background-color: #2f3e51;
-    color: #ffffff;
-    font-weight: bold;
-
+    a {
+      color: #ffffff;
+      font-weight: bold;
+    }
     &__list {
       padding-bottom: 40px;
     }

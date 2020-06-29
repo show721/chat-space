@@ -5,15 +5,15 @@
         = current_user.name
       %ul.Side-bar__top-items__icn
         %li.Side-bar__top-items__icn__edit
-          = link_to "#" do
+          = link_to new_group_path do
             %i.far.fa-edit
         %li.Side-bar__top-items__icn_set
           =link_to edit_user_path(current_user) do
             %i.fas.fa-cog
   .Side__group-lists
-    .Side__group-lists__list
-      %p.Side__group-lists__list__name techcamp
-      %p.Side__group-lists__list__message まだメッセージがありません
-    .Side__group-lists__list
-      %p.Side__group-lists__list__name techcamp
-      %p.Side__group-lists__list__message まだメッセージがありません
+    - current_user.groups.each do |group|
+      .Side__group-lists__list
+        = link_to '#' do
+          .Side__group-lists__list__name
+            = group.name
+          .Side__group-lists__list__message メッセージはまだありません
