@@ -14,7 +14,7 @@
     = render @messages
 
   .Main-chat__message-form
-    = form_with models: [@group, @message], html: {class: "new-message"}, local: true do |f|
+    = form_with model: [@group, @message], html: {class: "new-message"}, local: true do |f|
       .form-content
         = f.text_field :content, class: 'input-text', placeholder: 'type a message'
         = f.label :image, class: 'image' do
