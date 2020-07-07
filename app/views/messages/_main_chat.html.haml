@@ -4,6 +4,7 @@
       .group-name
         = @group.name
       .group-member
+        %p Member:
         -@group.group_users.each do |group_user| 
           = group_user.user.name
     .Main-chat__edit-btn
