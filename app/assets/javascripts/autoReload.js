@@ -3,7 +3,7 @@ $(function () {
     if (message.image) {
       let html = `<div class="Main-chat__message-list" data-message-id=${message.id}>
           <div class="user">
-            <div class="user__ame">
+            <div class="user__name">
               ${message.user_name}
             </div>
             <div class="user__date">
@@ -39,7 +39,7 @@ $(function () {
   }
 
   let reloadMessages = function () {
-    let last_message_id = $(".MessageBox:last").data("message-id");
+    let last_message_id = $(".Main-chat__message-list:last").data("message-id");
     $.ajax({
       url: "api/messages",
       type: "get",
@@ -52,9 +52,9 @@ $(function () {
           $.each(messages, function (i, message) {
             insertHTML += buildHTML(message);
           });
-          $(".MessageField").append(insertHTML);
-          $(".MessageField").animate({
-            scrollTop: $(".MessageField")[0].scrollHeight,
+          $(".Main-chat__message-lists").append(insertHTML);
+          $(".Main-chat__message-lists").animate({
+            scrollTop: $(".Main-chat__message-lists")[0].scrollHeight,
           });
         }
       })
