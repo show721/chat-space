@@ -1,7 +1,7 @@
 $(function () {
   function buildHTML(message) {
     if (message.image) {
-      let html = `<div class="Main-chat__message-list">
+      let html = `<div class="Main-chat__message-list" data-message-id=${message.id}>
           <div class="user">
             <div class="user__ame">
               ${message.user_name}
@@ -19,7 +19,7 @@ $(function () {
         </div>`;
       return html;
     } else {
-      let html = `<div class="Main-chat__message-list">
+      let html = `<div class="Main-chat__message-list" data-message-id=${message.id}>
         <div class="user">
           <div class="user__name">
             ${message.user_name}
@@ -37,29 +37,30 @@ $(function () {
       return html;
     }
   }
-  $(".new-message").on("submit", function (e) {
-    e.preventDefault();
-    let formData = new FormData(this);
-    let url = $(this).attr("action");
+
+  let reloadMessages = function () {
+    let last_message_id = $(".MessageBox:last").data("message-id");
     $.ajax({
-      url: url,
-      type: "POST",
-      data: formData,
+      url: "api/messages",
+      type: "get",
       dataType: "json",
-      processData: false,
-      contentType: false,
+      data: { id: last_message_id },
     })
-      .done(function (data) {
-        let html = buildHTML(data);
-        $(".Main-chat__message-lists").append(html);
-        $(".Main-chat__message-lists").animate({
-          scrollTop: $(".Main-chat__message-lists")[0].scrollHeight,
-        });
-        $(".new-message")[0].reset();
-        $(".submit-btn").prop("disabled", false);
+      .done(function (messages) {
+        if (messages.length !== 0) {
+          let insertHTML = "";
+          $.each(messages, function (i, message) {
+            insertHTML += buildHTML(message);
+          });
+          $(".MessageField").append(insertHTML);
+          $(".MessageField").animate({
+            scrollTop: $(".MessageField")[0].scrollHeight,
+          });
+        }
       })
       .fail(function () {
-        alert("メッセージ送信に失敗しました");
+        alert("error");
       });
-  });
+  };
+  setInterval(reloadMessages, 7000);
 });
